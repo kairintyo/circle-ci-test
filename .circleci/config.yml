@@ -14,6 +14,6 @@ jobs:
       - run: go test -v ./...
 
       - slack/status:
-        success_message: ':ok:\nRepository: $CIRCLE_PROJECT_REPONAME\nBranch: $CIRCLE_BRANCH Success!'
-        failure_message: ':failure:\nRepository: $CIRCLE_PROJECT_REPONAME\nBranch: $CIRCLE_BRANCH failure!'
+        success_message: 'Success!'
+        failure_message: 'failure!'
         webhook: "${SLACK_WEBHOOK}"
