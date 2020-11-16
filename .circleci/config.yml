@@ -1,4 +1,7 @@
 version: 2
+orbs:
+  slack: circleci/slack@3.4.2
+
 jobs:
   build:
     docker:
@@ -9,3 +12,8 @@ jobs:
 
       - run: go get -v -t -d ./...
       - run: go test -v ./...
+
+      - slack/status:
+        success_message: ':ok:\nRepository: $CIRCLE_PROJECT_REPONAME\nBranch: $CIRCLE_BRANCH Success!'
+        failure_message: ':failure:\nRepository: $CIRCLE_PROJECT_REPONAME\nBranch: $CIRCLE_BRANCH failure!'
+        webhook: "${SLACK_WEBHOOK}"
